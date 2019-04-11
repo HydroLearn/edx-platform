@@ -199,10 +199,9 @@ define(['jquery', 'underscore', 'gettext', 'common/js/components/utils/view_util
          * @param {*} newValue The new value for the field.
          * @returns {jQuery promise} A promise representing the updating of the field.
          */
-        updateXBlockField = function(xblockInfo, fieldName, newValue, waitingMessage) {
-            waitingMessage = waitingMessage || gettext('Saving');
+        updateXBlockField = function(xblockInfo, fieldName, newValue) {
             var requestData = createUpdateRequestData(fieldName, newValue);
-            return ViewUtils.runOperationShowingMessage(waitingMessage,
+            return ViewUtils.runOperationShowingMessage(gettext('Saving'),
                 function() {
                     return xblockInfo.save(requestData, {patch: true});
                 });
@@ -215,9 +214,10 @@ define(['jquery', 'underscore', 'gettext', 'common/js/components/utils/view_util
          * @param {Object} [options] Hash with options.
          * @returns {jQuery promise} A promise representing the updating of the xblock values.
          */
-        updateXBlockFields = function(xblockInfo, xblockData, options) {
+        updateXBlockFields = function(xblockInfo, xblockData, options, waitingMessage) {
+            waitingMessage = waitingMessage || gettext('Saving');
             options = _.extend({}, {patch: true}, options);
-            return ViewUtils.runOperationShowingMessage(gettext('Saving'),
+            return ViewUtils.runOperationShowingMessage(waitingMessage,
                 function() {
                     return xblockInfo.save(xblockData, options);
                 }
