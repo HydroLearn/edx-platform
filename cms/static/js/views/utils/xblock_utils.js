@@ -199,7 +199,7 @@ define(['jquery', 'underscore', 'gettext', 'common/js/components/utils/view_util
          * @param {*} newValue The new value for the field.
          * @returns {jQuery promise} A promise representing the updating of the field.
          */
-        updateXBlockFields = function(xblockInfo, xblockData, options, waitingMessage) {
+        updateXBlockField = function(xblockInfo, fieldName, newValue, waitingMessage) {
             waitingMessage = waitingMessage || gettext('Saving');
             var requestData = createUpdateRequestData(fieldName, newValue);
             return ViewUtils.runOperationShowingMessage(waitingMessage,
