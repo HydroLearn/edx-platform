@@ -569,9 +569,11 @@ def course_listing_simplified(request):
     """
     Simplified list all courses available to the logged in user
     """
-    courses, in_process_course_actions = get_courses_accessible_to_user(request)
-    courses = _remove_in_process_courses(courses, in_process_course_actions)
-    return JsonResponse(courses)
+    org = request.GET.get('org', '') if optimization_enabled else None
+    courses_iter, in_process_course_actions = get_courses_accessible_to_user(request, org)
+    split_archived = settings.FEATURES.get(u'ENABLE_SEPARATE_ARCHIVED_COURSES', False)
+    active_courses, archived_courses = _process_courses_list(courses_iter, in_process_course_actions, split_archived)
+    return JsonResponse(active_courses)
 
 
 def _get_rerun_link_for_item(course_key):
