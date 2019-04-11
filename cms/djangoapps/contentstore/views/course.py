@@ -569,6 +569,8 @@ def course_listing_simplified(request):
     """
     Simplified list all courses available to the logged in user
     """
+    optimization_enabled = GlobalStaff().has_user(request.user) and \
+        WaffleSwitchNamespace(name=WAFFLE_NAMESPACE).is_enabled(u'enable_global_staff_optimization')
     org = request.GET.get('org', '') if optimization_enabled else None
     courses_iter, in_process_course_actions = get_courses_accessible_to_user(request, org)
     split_archived = settings.FEATURES.get(u'ENABLE_SEPARATE_ARCHIVED_COURSES', False)
