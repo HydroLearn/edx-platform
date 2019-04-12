@@ -7,6 +7,7 @@ from rest_framework_swagger.views import get_swagger_view
 
 import contentstore.views
 from cms.djangoapps.contentstore.views.organization import OrganizationListView
+from cms.djangoapps.contentstore.views.course import course_listing_simplified
 import openedx.core.djangoapps.common_views.xblock
 import openedx.core.djangoapps.debug.views
 import openedx.core.djangoapps.external_auth.views
@@ -92,6 +93,7 @@ urlpatterns = [
     url(r'^course_info_update/{}/(?P<provided_id>\d+)?$'.format(settings.COURSE_KEY_PATTERN),
         contentstore.views.course_info_update_handler, name='course_info_update_handler'
         ),
+    url(r'^course_listing/?$', course_listing_simplified, name='course_listing_simplified'),
     url(r'^home/?$', contentstore.views.course_listing, name='home'),
     url(r'^course/{}/search_reindex?$'.format(settings.COURSE_KEY_PATTERN),
         contentstore.views.course_search_index_handler,
