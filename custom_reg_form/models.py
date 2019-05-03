@@ -13,8 +13,8 @@ class ExtraInfo(models.Model):
     user = models.OneToOneField(USER_MODEL, null=True)
     USAGE = (
         ('', ''),
-        ('instructor', 'Instructor'),
         ('student', 'Student'),
+        ('instructor', 'Instructor'),
     )
 
     goals = models.CharField(
