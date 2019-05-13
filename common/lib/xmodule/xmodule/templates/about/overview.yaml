@@ -3,7 +3,6 @@ metadata:
     display_name: overview
 
 data: |
-    <section style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;">
         <section class="about" > 
 			<h2 style="color:black; font-weight:bold;">About This Course</h2>     
  
@@ -77,4 +76,3 @@ data: |
 				</article>
 			</section>
 		</section>
-    </section>
