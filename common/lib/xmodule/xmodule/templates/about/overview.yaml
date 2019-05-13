@@ -5,6 +5,7 @@ metadata:
 data: |
      <section style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;">
         <section class="about" > 
+
            <h2 style="color:black; font-weight:bold;">About This Course</h2>     
  
            <p>Include your long course description here. The long course description should contain 150-400 words.</p>
