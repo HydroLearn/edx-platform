@@ -1,4 +1,80 @@
+---
 metadata:
     display_name: overview
-data: "<section style=\"font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;\">\n   <section class=\"about\" > \n      <h2 style=\"color:black; font-weight:bold;\">About This Course</h2>     \n\n      <p>Include your long course description here. The long course description should contain 150-400 words.</p>\n\n      <p>This is paragraph 2 of the long course description. Add more paragraphs as needed. Make sure to enclose them in paragraph tags.</p>\n   </section>\n\n   <section class=\"topics\">\n     <h2 style=\"color:black; font-weight:bold;\">Topics Covered</h2>\n     <p>Include a brief list of topics covered</p>\n   </section>\n\n   <section class=\"learningobj\">\n     <h2 style=\"color:black; font-weight:bold;\">Learning Objectives</h2>\n     <p>At the end of this course, you should be able to</p>\n   </section>\n\n   <section class=\"prerequisites\">\n   <h2 style=\"color:black; font-weight:bold;\">Prerequisites</h2>\n   <p>Add information about the skills and knowledge students need to take this course.</p>\n   </section>\n\n\n   <section class=\"course-staff\">\n      <h2 style=\"color:black; font-weight:bold;\">Course Authors</h2>\n      <article class=\"teacher\">\n        <div class=\"teacher-image\">\n          <img src=\"/static/images/placeholder-faculty.png\" align=\"left\" style=\"margin:0 20 px 0\" alt=\"Course Staff Image #1\">\n        </div>\n\n        <h3 style =\"color:steelblue; font-face:verdana;\">Staff Member #1</h3>\n        <p>Biography of instructor/staff member #1</p>\n      Email Address\n     </article>\n\n     <article class=\"teacher\">\n       <div class=\"teacher-image\">\n          <img src=\"/static/images/placeholder-faculty.png\" align=\"left\" style=\"margin:0 20 px 0\" alt=\"Course Staff Image #2\">\n      </div>\n      <h3 style =\"color:steelblue; font-face:verdana;\">Staff Member #2</h3>\n      <p>Biography of instructor/staff member #2</p>\n     Email Address\n    </article>\n  </section>\n\n  <section class=\"targetaudience\">\n    <h2 style=\"color:black; font-weight:bold;\">Target Audience</h2>\n    <p>Include here information about the target audience for the course</p>\n  </section>\n\n  <section class=\"tools\">\n    <h2 style=\"color:black; font-weight:bold;\">Tools Needed</h2>\n    <p>Include here information about any tools or software needed</p>\n </section>\n <section class=\"faq\">\n   <section class=\"responses\">\n     <h2 style=\"color:black; font-weight:bold;\">Frequently Asked Questions</h2>\n     <article class=\"response\">\n       <h4><b>Q1: Does this course require programming skills, in what language?</b></h4>\n       <p>Include here information about any programming skills</p>\n     </article>\n     <article class=\"response\">\n       <h4><b>Q2: Are there any external links that the learner can consult with?</b></h4>\n       <p>See this <a href=\"http://www.hydrolearn.org\">external link</a> for more information.</p>\n     </article>\n     <article class=\"response\">\n       <h4><b>Q3: Can I adapt this course?</b></h4>\n       <p>Contact the course authors to get a zipped file and import directly into your own course to customize according to your own needs</p>\n     </article>\n   </section>\n</section>\n</section>\n"
 
+data: |
+    <section style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;">
+        <section class="about" > 
+			<h2 style="color:black; font-weight:bold;">About This Course</h2>     
+ 
+			<p>Include your long course description here. The long course description should contain 150-400 words.</p>
+
+			<p>This is paragraph 2 of the long course description. Add more paragraphs as needed. Make sure to enclose them in paragraph tags.</p>
+        </section>
+
+        <section class="topics">
+			<h2 style="color:black; font-weight:bold;">Topics Covered</h2>
+			<p>Include a brief list of topics covered</p>
+        </section>
+
+        <section class="learningobj">
+			<h2 style="color:black; font-weight:bold;">Learning Objectives</h2>
+			<p>At the end of this course, you should be able to</p>
+        </section>
+
+        <section class="prerequisites">
+			<h2 style="color:black; font-weight:bold;">Prerequisites</h2>
+			<p>Add information about the skills and knowledge students need to take this course.</p>
+        </section>
+
+
+        <section class="course-staff">
+			<h2 style="color:black; font-weight:bold;">Course Authors</h2>
+			<article class="teacher">
+				<div class="teacher-image">
+					<img src="/static/images/placeholder-faculty.png" align="left" style="margin:0 20 px 0" alt="Course Staff Image #1">
+				</div>
+
+				<h3 style ="color:steelblue; font-face:verdana;">Staff Member #1</h3>
+				<p>Biography of instructor/staff member #1</p>
+				Email Address
+			</article>
+
+			<article class="teacher">
+				<div class="teacher-image">
+					<img src="/static/images/placeholder-faculty.png" align="left" style="margin:0 20 px 0" alt="Course Staff Image #2">
+				</div>
+				<h3 style ="color:steelblue; font-face:verdana;">Staff Member #2</h3>
+				<p>Biography of instructor/staff member #2</p>
+				Email Address
+			</article>
+		</section>
+
+		<section class="targetaudience">
+			<h2 style="color:black; font-weight:bold;">Target Audience</h2>
+			<p>Include here information about the target audience for the course</p>
+		</section>
+
+		<section class="tools">
+			<h2 style="color:black; font-weight:bold;">Tools Needed</h2>
+			<p>Include here information about any tools or software needed</p>
+		</section>
+		
+		<section class="faq">
+			<section class="responses">
+				<h2 style="color:black; font-weight:bold;">Frequently Asked Questions</h2>
+				<article class="response">
+					<h4><b>Q1: Does this course require programming skills, in what language?</b></h4>
+					<p>Include here information about any programming skills</p>
+				</article>
+				<article class="response">
+					<h4><b>Q2: Are there any external links that the learner can consult with?</b></h4>
+					<p>See this <a href="http://www.hydrolearn.org">external link</a> for more information.</p>
+				</article>
+				<article class="response">
+					<h4><b>Q3: Can I adapt this course?</b></h4>
+					<p>Contact the course authors to get a zipped file and import directly into your own course to customize according to your own needs</p>
+				</article>
+			</section>
+		</section>
+    </section>
