@@ -13,15 +13,7 @@ data: |
            <p>This is paragraph 2 of the long course description. Add more paragraphs as needed. Make sure to enclose them in paragraph tags.</p>
         </section>
 
-        <section class="topics">
-          <h2 style="color:black; font-weight:bold;">Topics Covered</h2>
-          <p>Include a brief list of topics covered</p>
-        </section>
-
-        <section class="learningobj">
-          <h2 style="color:black; font-weight:bold;">Learning Objectives</h2>
-          <p>At the end of this course, you should be able to</p>
-        </section>
+       
 
         <section class="prerequisites">
         <h2 style="color:black; font-weight:bold;">Prerequisites</h2>
