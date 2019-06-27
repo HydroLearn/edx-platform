@@ -69,6 +69,9 @@ from edxval.api import (
     create_or_update_video_transcript,
     create_external_video,
 )
+import pickle
+from googleapiclient.discovery import build
+from apiclient.http import MediaFileUpload
 
 User = get_user_model()
 
@@ -590,6 +593,28 @@ class CourseExportTask(UserTask):  # pylint: disable=abstract-method
         """
         key = arguments_dict[u'course_key_string']
         return u'Export of {}'.format(key)
+
+
+@task(bind=True)
+def export_all(self):
+    fail_count = 0
+    success_count = 0
+    with open('token.pickle', 'rb') as token:
+        creds = pickle.load(token)
+    service = build('drive', 'v3', credentials=creds)
+    for c in modulestore().get_course_summaries():
+        try:
+            LOGGER.info("exporting {}".format(c.id))
+            course = modulestore().get_course(c.id)
+            export_file = create_export_tarball(course, c.id, {})
+            file_metadata = {'name': export_file.name)}
+            media = MediaFileUpload(export_file.name, mimetype='text/plain')
+            service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+            success_count += 1
+        except:
+            LOGGER.error("failed to export {}".format(c.id))
+            fail_count += 1
+    LOGGER.info("{} courses exported, {} failed".format(success_count, fail_count))
 
 
 @task(base=CourseExportTask, bind=True)
