@@ -607,7 +607,7 @@ def export_all(self):
             LOGGER.info("exporting {}".format(c.id))
             course = modulestore().get_course(c.id)
             export_file = create_export_tarball(course, c.id, {})
-            file_metadata = {'name': export_file.name)}
+            file_metadata = {'name': export_file.name}
             media = MediaFileUpload(export_file.name, mimetype='text/plain')
             service.files().create(body=file_metadata, media_body=media, fields='id').execute()
             success_count += 1
