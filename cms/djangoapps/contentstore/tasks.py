@@ -599,20 +599,38 @@ class CourseExportTask(UserTask):  # pylint: disable=abstract-method
 def export_all(self):
     fail_count = 0
     success_count = 0
+    folder_id = '1HSmRxx7iEpHxZFl1fCWgrwPmlz68T1u-'
     with open('token.pickle', 'rb') as token:
         creds = pickle.load(token)
     service = build('drive', 'v3', credentials=creds)
+
+    # query folder to retrieve existing file ids
+    res = service.files().list(q="'{}' in parents".format(folder_id)).execute()
+    file_by_name = {}
+    for f in res.get('files', []):
+        file_by_name.update({f['name']: f})
     for c in modulestore().get_course_summaries():
         try:
-            LOGGER.info("exporting {}".format(c.id))
+            file_name = "{}.tar.gz".format(c.id)
+            gfile = None
+            if file_name in file_by_name:
+                LOGGER.info("Found existing file {}".format(file_name))
+                gfile = file_by_name[file_name] 
+            else:
+                LOGGER.info("Did not find existing file for {}".format(file_name))
             course = modulestore().get_course(c.id)
             export_file = create_export_tarball(course, c.id, {})
-            file_metadata = {'name': export_file.name}
-            media = MediaFileUpload(export_file.name, mimetype='text/plain')
-            service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+            file_metadata = {'name': "{}.tar.gz".format(c.id), 'parents': [folder_id]}
+            media = MediaFileUpload(export_file.name, mimetype='application/gzip')
+            if not gfile:
+                LOGGER.info("Adding new file {}".format(file_name))
+                service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+            else:
+                LOGGER.info("updating file {}".format(file_name))
+                service.files().update(fileId=gfile['id'], media_body=media).execute()
             success_count += 1
-        except:
-            LOGGER.error("failed to export {}".format(c.id))
+        except Exception as e:
+            LOGGER.exception("failed to export {}".format(c.id))
             fail_count += 1
     LOGGER.info("{} courses exported, {} failed".format(success_count, fail_count))
 
