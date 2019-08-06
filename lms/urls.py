@@ -1048,3 +1048,9 @@ urlpatterns += [
 ]
 
 urlpatterns.extend(plugin_urls.get_patterns(plugin_constants.ProjectType.LMS))
+
+# Jupyter Viewer XBlock Endpoint (added 8-6-19)
+urlpatterns += (
+    url(r'^api/jupyter/', include('xblock_jupyter_viewer.rest.urls', 
+                                  namespace='xblock_jupyter_viewer')),
+)
