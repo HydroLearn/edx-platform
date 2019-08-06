@@ -2281,6 +2281,9 @@ INSTALLED_APPS = [
 
     # Jupyter Notebook Viewer XBlock (added 8-6-19)
     'xblock_jupyter_viewer',
+
+    # Jupyter Google Colab XBlock (added 8-6-19)
+    'colab_xblock',
 ]
 
 ######################### CSRF #########################################
