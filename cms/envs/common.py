@@ -1174,6 +1174,9 @@ INSTALLED_APPS = [
     'openedx.features.course_duration_limits',
     'openedx.features.content_type_gating',
     'experiments',
+
+    # Jupyter Notebook Viewer XBlock (added 8-6-19)
+    'xblock_jupyter_viewer',
 ]
 
 
