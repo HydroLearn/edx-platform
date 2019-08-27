@@ -605,10 +605,6 @@ def export_olx(self, user_id, course_key_string, language):
         with respect_language(language):
             self.status.fail(_(u'Unknown User ID: {0}').format(user_id))
         return
-    if not has_course_author_access(user, courselike_key):
-        with respect_language(language):
-            self.status.fail(_(u'Permission denied'))
-        return
 
     if isinstance(courselike_key, LibraryLocator):
         courselike_module = modulestore().get_library(courselike_key)
