@@ -44,7 +44,8 @@ from course_action_state.models import CourseRerunState
 from models.settings.course_metadata import CourseMetadata
 from openedx.core.djangoapps.embargo.models import CountryAccessRule, RestrictedCourse
 from openedx.core.lib.extract_tar import safetar_extractall
-from student.auth import has_course_author_access
+from student.auth import has_course_author_access, user_has_role
+from student.roles import CourseCreatorRole
 from xmodule.contentstore.django import contentstore
 from xmodule.course_module import CourseFields
 from xmodule.exceptions import SerializationError
@@ -605,7 +606,10 @@ def export_olx(self, user_id, course_key_string, language):
         with respect_language(language):
             self.status.fail(_(u'Unknown User ID: {0}').format(user_id))
         return
-
+    if not user_has_role(user, CourseCreatorRole()):
+        with respect_language(language):
+            self.status.fail(_(u'Permission denied'))
+        return
     if isinstance(courselike_key, LibraryLocator):
         courselike_module = modulestore().get_library(courselike_key)
     else:
