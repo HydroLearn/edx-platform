@@ -32,7 +32,8 @@ from contentstore.storage import course_import_export_storage
 from contentstore.tasks import CourseExportTask, CourseImportTask, export_olx, import_olx
 from contentstore.utils import reverse_course_url, reverse_library_url
 from edxmako.shortcuts import render_to_response
-from student.auth import has_course_author_access
+from student.auth import has_course_author_access, user_has_role
+from student.roles import CourseCreatorRole
 from util.json_request import JsonResponse
 from util.views import ensure_valid_course_key
 from xmodule.modulestore.django import modulestore
@@ -301,9 +302,8 @@ def export_handler(request, course_key_string):
     a link appearing on the page once it's ready.
     """
     course_key = CourseKey.from_string(course_key_string)
-    if not has_course_author_access(request.user, course_key):
+    if not user_has_role(request.user, CourseCreatorRole()):
         raise PermissionDenied()
-
     if isinstance(course_key, LibraryLocator):
         courselike_module = modulestore().get_library(course_key)
         context = {
@@ -354,7 +354,7 @@ def export_status_handler(request, course_key_string):
     returned.
     """
     course_key = CourseKey.from_string(course_key_string)
-    if not has_course_author_access(request.user, course_key):
+    if not user_has_role(request.user, CourseCreatorRole()):
         raise PermissionDenied()
 
     # The task status record is authoritative once it's been created
@@ -416,7 +416,7 @@ def export_output_handler(request, course_key_string):
     filesystem instead of an external service like S3.
     """
     course_key = CourseKey.from_string(course_key_string)
-    if not has_course_author_access(request.user, course_key):
+    if not user_has_role(request.user, CourseCreatorRole()):
         raise PermissionDenied()
 
     task_status = _latest_task_status(request, course_key_string, export_output_handler)

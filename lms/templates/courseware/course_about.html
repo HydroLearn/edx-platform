@@ -239,6 +239,7 @@ from six import string_types
 
         <%block name="course_about_important_dates">
         <ol class="important-dates">
+          <li class="important-dates-item"><span class="icon fa fa-info-circle" aria-hidden="true" title="Link to create tar.gz file of course"></span><p class="important-dates-item-title">${_("Course Export")}</p><a class="important-dates-item-text course-export" href="${studio_export_url}">Export Link</a></li>
           <li class="important-dates-item"><span class="icon fa fa-info-circle" aria-hidden="true"></span><p class="important-dates-item-title">${_("Course Number")}</p><span class="important-dates-item-text course-number">${course.display_number_with_default}</span></li>
           % if not course.start_date_is_still_default:
               <%
