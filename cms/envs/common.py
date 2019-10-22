@@ -185,7 +185,7 @@ FEATURES = {
     'AUTH_USE_CERTIFICATES': False,
 
     # email address for studio staff (eg to request course creation)
-    'STUDIO_REQUEST_EMAIL': '',
+    'STUDIO_REQUEST_EMAIL': 'contact@hydrolearn.org',
 
     # Segment - must explicitly turn it on for production
     'CMS_SEGMENT_KEY': None,
