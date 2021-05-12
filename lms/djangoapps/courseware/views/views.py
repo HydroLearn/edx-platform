@@ -890,6 +890,7 @@ def course_about(request, course_id):
 
         staff_access = bool(has_access(request.user, 'staff', course))
         studio_url = get_studio_url(course, 'settings/details')
+        studio_export_url = get_studio_url(course, 'export')
 
         if request.user.has_perm(VIEW_COURSE_HOME, course):
             course_target = reverse(course_home_url_name(course.id), args=[text_type(course.id)])
@@ -960,6 +961,7 @@ def course_about(request, course_id):
             'course_details': course_details,
             'staff_access': staff_access,
             'studio_url': studio_url,
+            'studio_export_url': studio_export_url,
             'registered': registered,
             'course_target': course_target,
             'is_cosmetic_price_enabled': settings.FEATURES.get('ENABLE_COSMETIC_DISPLAY_PRICE'),

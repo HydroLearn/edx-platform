@@ -42,7 +42,8 @@ from cms.djangoapps.models.settings.course_metadata import CourseMetadata
 from common.djangoapps.course_action_state.models import CourseRerunState
 from openedx.core.djangoapps.embargo.models import CountryAccessRule, RestrictedCourse
 from openedx.core.lib.extract_tar import safetar_extractall
-from common.djangoapps.student.auth import has_course_author_access
+from common.djangoapps.student.auth import has_course_author_access, user_has_role
+from common.djangoapps.student.roles import CourseCreatorRole
 from common.djangoapps.util.organizations_helpers import add_organization_course, get_organization_by_short_name
 from xmodule.contentstore.django import contentstore
 from xmodule.course_module import CourseFields
@@ -250,11 +251,11 @@ def export_olx(self, user_id, course_key_string, language):
         with translation_language(language):
             self.status.fail(_(u'Unknown User ID: {0}').format(user_id))
         return
-    if not has_course_author_access(user, courselike_key):
+
+    if not user_has_role(user, CourseCreatorRole()):
         with translation_language(language):
             self.status.fail(_(u'Permission denied'))
         return
-
     if isinstance(courselike_key, LibraryLocator):
         courselike_module = modulestore().get_library(courselike_key)
     else:
