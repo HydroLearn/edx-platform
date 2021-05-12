@@ -1,53 +1,91 @@
 ---
 metadata:
-    display_name: overview
+  display_name: overview
 
 data: |
-    <section class="about">
-      <h2>About This Course</h2>
-      <p>Include your long course description here. The long course description should contain 150-400 words.</p>
+  <section style="font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;">
+    <section class="about" > 
+      <h2 style="color:black; font-weight:bold;">Problem Statement</h2>     
+      <p>Include your problem statement description here. The description should contain 150-400 words.</p>
+      <p>This is paragraph 2 of the problem statement. Add more paragraphs as needed. Make sure to enclose them in paragraph tags.</p>
+    </section>
 
-      <p>This is paragraph 2 of the long course description. Add more paragraphs as needed. Make sure to enclose them in paragraph tags.</p>
+    <section>
+      <h2 style="color:black; font-weight: bold;">Module Overview</h2>
+      <p>Describe the overview of the module in a few sentences. How does your module plan to address the problem statement? </p>
+    </section>
+
+    <section class="topics">
+      <h2 style="color:black; font-weight:bold;">Topics Covered</h2>
+      <p>Include a brief list of topics covered</p>
     </section>
 
     <section class="prerequisites">
-      <h2>Requirements</h2>
-      <p>Add information about the skills and knowledge students need to take this course.</p>
+      <h2 style="color:black; font-weight:bold;">Prerequisites</h2>
+      <p>Add information about the skills and knowledge students need to take this course. Is your module part of a series? If so, include that information here.</p>
     </section>
+
+    <section class="learningobj">
+      <h2 style="color:black; font-weight:bold;">Learning Objectives</h2>
+      <p>Add learning objective language like the following, "At the end of this module, students will be able to: X, Y, Z" </p>
+      <p>"This will be accomplished through activities within each section. Results from each activity will be recorded in specified results templates. The results templates for each activity can be found at the beginning of each activity. The results templates are organized such that results from one activity can easily be used in successive activities."</p>
+    </section>
+
 
     <section class="course-staff">
-      <h2>Course Staff</h2>
+      <h2 style="color:black; font-weight:bold;">Course Authors</h2>
       <article class="teacher">
         <div class="teacher-image">
-          <img src="/static/images/placeholder-faculty.png" align="left" alt="Course Staff Image #1" />
+          <img src="/static/images/placeholder-faculty.png" align="left" style="margin:0 20 px 0" alt="Course Staff Image #1">
         </div>
 
-        <h3>Staff Member #1</h3>
+        <h3 style ="color:steelblue; font-face:verdana;">Staff Member #1</h3>
         <p>Biography of instructor/staff member #1</p>
+        Email Address
       </article>
 
       <article class="teacher">
         <div class="teacher-image">
-          <img src="/static/images/placeholder-faculty.png" align="left" alt="Course Staff Image #2" />
+          <img src="/static/images/placeholder-faculty.png" align="left" style="margin:0 20 px 0" alt="Course Staff Image #2">
         </div>
-
-        <h3>Staff Member #2</h3>
+        <h3 style ="color:steelblue; font-face:verdana;">Staff Member #2</h3>
         <p>Biography of instructor/staff member #2</p>
+        Email Address
       </article>
     </section>
 
-    <section class="faq">
-      <section class="responses">
-        <h2>Frequently Asked Questions</h2>
-        <article class="response">
-          <h3>What web browser should I use?</h3>
-          <p>The Open edX platform works best with current versions of Chrome, Edge, Firefox, or Safari.</p>
-          <p>See our <a href="https://docs.openedx.org/en/latest/developers/references/developer_guide/testing/browsers.html">list of supported browsers</a> for the most up-to-date information.</p>
-        </article>
-
-        <article class="response">
-          <h3>Question #2</h3>
-          <p>Your answer would be displayed here.</p>
-        </article>
-      </section>
+    <section class="solutionkeys">
+      <h2 style="color:black; font-weight:bold;">Solution Keys</h2>
+      <p>Include information regarding whom to contact to get solution keys for the learning activities embedded in the module. </p>
+      <p>"Completed results templates for each learning activity are available and can be requested from the course authors."</p>
     </section>
+
+    <section class="targetaudience">
+      <h2 style="color:black; font-weight:bold;">Target Audience</h2>
+      <p>Include here information about the target audience for the course</p>
+    </section>
+
+    <section class="tools">
+      <h2 style="color:black; font-weight:bold;">Tools Needed</h2>
+      <p>Include here information about any tools or software needed</p>
+    </section>
+
+    <section>
+      <h2 style="color:black; font-weight:bold;">Expected Effort</h2>
+      <p>Include the amount of active work time it takes for a student to complete the module. Please avoid vague language (i.e., one to two weeks). Consider more exact language like the following, "The module developers estimate that this module will take between X to X hours to complete". Don't forget to include this number ("X hours") near the bottom of this page, where it says Requirements.</p>
+    </section>
+
+    <section>
+      <h2 style="color:black; font-weight:bold;">Course Sharing and Adaptation</h2>
+      <p>This course is available for export by clicking the "Export Link" at the top right of this page. You will need a HydroLearn instructor studio account to do this.  You will first need to sign up for a hydrolearn.org account, then you should register as an instructor by clicking 'studio.hydrolearn' and requesting course creation permissions.</p>
+      <h2 style="color:black; font-weight:bold;">Recommended Citation</h2>
+      <p>Last name, First Initial., (Year) Module Title. HydroLearn. URL to about page. </p>
+      <p>Example: Habib, E. (2020). Hydrologic Design of a Storm Detention Basin: Beau Bassin, Watershed, LA. HydroLearn. https://edx.hydrolearn.org/courses/course-v1:HydroLearn+HL402-2+2020_S1/about</p>
+    </section>
+
+    <section>
+      <h2 style="color:black; font-weight:bold;">Adapted From</h2>
+      <p>If your module has been adapted from a previously existing module, please mention that here. Go into detail about how this module differs from the original. IF your module is an original creation, you can delete this section.</p>
+    </section>
+
+  </section>

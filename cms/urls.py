@@ -368,3 +368,10 @@ urlpatterns += [
     re_path('^authoring-api/ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     re_path('^authoring-api/schema/', SpectacularAPIView.as_view(), name='schema'),
 ]
+
+
+# Jupyter Viewer XBlock Endpoint (added 5-21-21)
+urlpatterns += [
+    path(r'^api/jupyter/', include('xblock_jupyter_viewer.rest.urls', 
+                                  namespace='xblock_jupyter_viewer')),
+]

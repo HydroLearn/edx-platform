@@ -62,7 +62,7 @@ from cms.djangoapps.contentstore.xblock_storage_handlers.view_handlers import ge
 from cms.djangoapps.models.settings.course_metadata import CourseMetadata
 from common.djangoapps.course_action_state.models import CourseRerunState
 from common.djangoapps.static_replace import replace_static_urls
-from common.djangoapps.student.auth import has_course_author_access
+from common.djangoapps.student.auth import has_course_author_access, user_has_role
 from common.djangoapps.student.roles import CourseInstructorRole, CourseStaffRole, LibraryUserRole
 from common.djangoapps.util.monitoring import monitor_import_failure
 from openedx.core.djangoapps.content.learning_sequences.api import key_supports_outlines
@@ -342,11 +342,11 @@ def export_olx(self, user_id, course_key_string, language):
         with translation_language(language):
             self.status.fail(UserErrors.UNKNOWN_USER_ID.format(user_id))
         return
-    if not has_course_author_access(user, courselike_key):
+
+    if not user_has_role(user, CourseCreatorRole()):
         with translation_language(language):
             self.status.fail(UserErrors.PERMISSION_DENIED)
         return
-
     if isinstance(courselike_key, LibraryLocator):
         courselike_block = modulestore().get_library(courselike_key)
     else:
