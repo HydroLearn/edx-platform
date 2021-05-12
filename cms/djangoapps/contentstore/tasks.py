@@ -54,6 +54,9 @@ from common.djangoapps.util.monitoring import monitor_import_failure
 from openedx.core.djangoapps.content.learning_sequences.api import key_supports_outlines
 from openedx.core.djangoapps.embargo.models import CountryAccessRule, RestrictedCourse
 from openedx.core.lib.extract_tar import safetar_extractall
+from common.djangoapps.student.auth import has_course_author_access, user_has_role
+from common.djangoapps.student.roles import CourseCreatorRole
+from common.djangoapps.util.organizations_helpers import add_organization_course, get_organization_by_short_name
 from xmodule.contentstore.django import contentstore
 from xmodule.course_module import CourseFields
 from xmodule.exceptions import SerializationError
@@ -305,11 +308,11 @@ def export_olx(self, user_id, course_key_string, language):
         with translation_language(language):
             self.status.fail(UserErrors.UNKNOWN_USER_ID.format(user_id))
         return
-    if not has_course_author_access(user, courselike_key):
+
+    if not user_has_role(user, CourseCreatorRole()):
         with translation_language(language):
             self.status.fail(UserErrors.PERMISSION_DENIED)
         return
-
     if isinstance(courselike_key, LibraryLocator):
         courselike_module = modulestore().get_library(courselike_key)
     else:
