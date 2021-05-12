@@ -33,7 +33,8 @@ from user_tasks.conf import settings as user_tasks_settings
 from user_tasks.models import UserTaskArtifact, UserTaskStatus
 
 from common.djangoapps.edxmako.shortcuts import render_to_response
-from common.djangoapps.student.auth import has_course_author_access
+from common.djangoapps.student.auth import has_course_author_access, user_has_role
+from common.djangoapps.student.roles import CourseCreatorRole
 from common.djangoapps.util.json_request import JsonResponse
 from common.djangoapps.util.monitoring import monitor_import_failure
 from common.djangoapps.util.views import ensure_valid_course_key
@@ -318,7 +319,8 @@ def export_handler(request, course_key_string):
     a link appearing on the page once it's ready.
     """
     course_key = CourseKey.from_string(course_key_string)
-    if not has_course_author_access(request.user, course_key):
+
+    if not user_has_role(request.user, CourseCreatorRole()):
         raise PermissionDenied()
     library = isinstance(course_key, LibraryLocator)
     if library:
@@ -373,7 +375,7 @@ def export_status_handler(request, course_key_string):
     returned.
     """
     course_key = CourseKey.from_string(course_key_string)
-    if not has_course_author_access(request.user, course_key):
+    if not user_has_role(request.user, CourseCreatorRole()):
         raise PermissionDenied()
 
     # The task status record is authoritative once it's been created
@@ -435,7 +437,7 @@ def export_output_handler(request, course_key_string):
     filesystem instead of an external service like S3.
     """
     course_key = CourseKey.from_string(course_key_string)
-    if not has_course_author_access(request.user, course_key):
+    if not user_has_role(request.user, CourseCreatorRole()):
         raise PermissionDenied()
 
     task_status = _latest_task_status(request, course_key_string, export_output_handler)

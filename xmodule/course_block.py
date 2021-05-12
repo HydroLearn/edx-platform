@@ -547,6 +547,13 @@ class CourseFields:  # lint-amnesty, pylint: disable=missing-class-docstring
     )
     advanced_modules = List(
         display_name=_("Advanced Module List"),
+        default=[
+           "hl_text",
+           "hl_learning_objs",
+           "hl_learning_objs_text",
+           "hl_learning_activities_text",
+           "hl_rubric_text"
+        ],
         help=_("Enter the names of the advanced modules to use in your course."),
         scope=Scope.settings
     )

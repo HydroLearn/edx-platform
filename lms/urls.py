@@ -1054,3 +1054,11 @@ urlpatterns += [
 urlpatterns += [
     path('api/notifications/', include('openedx.core.djangoapps.notifications.urls')),
 ]
+
+
+# Jupyter Viewer XBlock Endpoint (added 5-21-21)
+urlpatterns += [
+    path('api/jupyter/', include('xblock_jupyter_viewer.rest.urls', 
+                                  namespace='xblock_jupyter_viewer')),
+]
+
