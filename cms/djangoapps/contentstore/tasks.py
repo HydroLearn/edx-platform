@@ -55,7 +55,7 @@ from cms.djangoapps.contentstore.utils import (
 )
 from cms.djangoapps.models.settings.course_metadata import CourseMetadata
 from common.djangoapps.course_action_state.models import CourseRerunState
-from common.djangoapps.student.auth import has_course_author_access
+from common.djangoapps.student.auth import has_course_author_access, user_has_role
 from common.djangoapps.student.roles import CourseInstructorRole, CourseStaffRole, LibraryUserRole
 from common.djangoapps.util.monitoring import monitor_import_failure
 from openedx.core.djangoapps.content.learning_sequences.api import key_supports_outlines
@@ -65,6 +65,27 @@ from openedx.core.djangoapps.discussions.config.waffle import ENABLE_NEW_STRUCTU
 from openedx.core.djangoapps.discussions.models import DiscussionsConfiguration, Provider
 from openedx.core.djangoapps.discussions.tasks import update_unit_discussion_state_from_discussion_blocks
 from openedx.core.djangoapps.embargo.models import CountryAccessRule, RestrictedCourse
+
+# --------------------------------- FROM OLD BRANCH
+# from openedx.core.lib.extract_tar import safetar_extractall
+# from common.djangoapps.student.roles import CourseCreatorRole
+
+# # EDIT seems obsolete CJR 2-8-22
+# # from common.djangoapps.util.organizations_helpers import add_organization_course, get_organization_by_short_name
+
+# from xmodule.contentstore.django import contentstore
+# from xmodule.course_module import CourseFields
+# from xmodule.exceptions import SerializationError
+# from xmodule.modulestore import COURSE_ROOT, LIBRARY_ROOT
+# from xmodule.modulestore.django import modulestore
+# from xmodule.modulestore.exceptions import DuplicateCourseError, InvalidProctoringProvider, ItemNotFoundError
+# from xmodule.modulestore.xml_exporter import export_course_to_xml, export_library_to_xml
+# from xmodule.modulestore.xml_importer import CourseImportException, import_course_from_xml, import_library_from_xml
+
+# --------------------------------- END FROM OLD BRANCH
+
+
+
 from openedx.core.lib.extract_archive import safe_extractall
 from xmodule.contentstore.django import contentstore
 from xmodule.course_block import CourseFields
@@ -322,11 +343,11 @@ def export_olx(self, user_id, course_key_string, language):
         with translation_language(language):
             self.status.fail(UserErrors.UNKNOWN_USER_ID.format(user_id))
         return
-    if not has_course_author_access(user, courselike_key):
+
+    if not user_has_role(user, CourseCreatorRole()):
         with translation_language(language):
             self.status.fail(UserErrors.PERMISSION_DENIED)
         return
-
     if isinstance(courselike_key, LibraryLocator):
         courselike_block = modulestore().get_library(courselike_key)
     else:

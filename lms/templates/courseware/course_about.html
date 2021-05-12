@@ -159,6 +159,7 @@ from openedx.core.lib.courses import course_image_url
 
         <%block name="course_about_important_dates">
         <ol class="important-dates">
+          <li class="important-dates-item"><span class="icon fa fa-info-circle" aria-hidden="true" title="Link to create tar.gz file of course"></span><p class="important-dates-item-title">${_("Course Export")}</p><a class="important-dates-item-text course-export" href="${studio_export_url}">Export Link</a></li>
           <li class="important-dates-item">
               <span class="icon fa fa-info-circle" aria-hidden="true"></span>
               <p class="important-dates-item-title">${_("Course Number")}</p>
