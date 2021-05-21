@@ -991,3 +991,9 @@ urlpatterns += [
 urlpatterns += [
     url(r'^api/course_experience/', include('openedx.features.course_experience.api.v1.urls')),
 ]
+
+# Jupyter Viewer XBlock Endpoint (added 5-21-21)
+urlpatterns += [
+    url(r'^api/jupyter/', include('xblock_jupyter_viewer.rest.urls', 
+                                  namespace='xblock_jupyter_viewer')),
+]

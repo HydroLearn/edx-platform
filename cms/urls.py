@@ -320,3 +320,10 @@ urlpatterns.extend(get_plugin_url_patterns(ProjectType.CMS))
 urlpatterns += [
     url(r'^api/contentstore/', include('cms.djangoapps.contentstore.rest_api.urls'))
 ]
+
+
+# Jupyter Viewer XBlock Endpoint (added 5-21-21)
+urlpatterns += [
+    url(r'^api/jupyter/', include('xblock_jupyter_viewer.rest.urls', 
+                                  namespace='xblock_jupyter_viewer')),
+]
