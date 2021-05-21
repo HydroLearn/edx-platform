@@ -999,19 +999,8 @@ urlpatterns += [
     path('api/course_experience/', include('openedx.features.course_experience.api.v1.urls')),
 ]
 
-# Bulk User Retirement API urls
-if settings.FEATURES.get('ENABLE_BULK_USER_RETIREMENT'):
-    urlpatterns += [
-        path('', include('lms.djangoapps.bulk_user_retirement.urls')),
-    ]
-
-# Provider States urls
-if getattr(settings, 'PROVIDER_STATES_URL', None):
-    from lms.djangoapps.courseware.tests.pacts.views import provider_state as courseware_xblock_handler_provider_state
-    urlpatterns += [
-        path(
-            'courses/xblock/handler/provider_states',
-            courseware_xblock_handler_provider_state,
-            name='courseware_xblock_handler_provider_state',
-        )
-    ]
+# Jupyter Viewer XBlock Endpoint (added 5-21-21)
+urlpatterns += [
+    url(r'^api/jupyter/', include('xblock_jupyter_viewer.rest.urls', 
+                                  namespace='xblock_jupyter_viewer')),
+]
