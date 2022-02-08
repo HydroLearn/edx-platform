@@ -56,7 +56,10 @@ from openedx.core.djangoapps.embargo.models import CountryAccessRule, Restricted
 from openedx.core.lib.extract_tar import safetar_extractall
 from common.djangoapps.student.auth import has_course_author_access, user_has_role
 from common.djangoapps.student.roles import CourseCreatorRole
-from common.djangoapps.util.organizations_helpers import add_organization_course, get_organization_by_short_name
+
+# EDIT seems obsolete CJR 2-8-22
+# from common.djangoapps.util.organizations_helpers import add_organization_course, get_organization_by_short_name
+
 from xmodule.contentstore.django import contentstore
 from xmodule.course_module import CourseFields
 from xmodule.exceptions import SerializationError
