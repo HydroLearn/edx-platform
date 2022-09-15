@@ -177,6 +177,16 @@ from common.djangoapps.pipeline_mako import render_require_js_path_overrides
   % endif
 </head>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8BG1GC87VP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8BG1GC87VP');
+</script>
+
 <body class="${static.dir_rtl()} <%block name='bodyclass'/> lang_${LANGUAGE_CODE}">
 
 <%static:optional_include_mako file="body-initial.html" is_theming_enabled="True" />
